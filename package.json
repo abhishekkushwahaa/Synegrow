@@ -4,12 +4,18 @@
   "type": "module",
   "scripts": {
     "start": "bun run index.ts",
-    "dev": "bun run --watch index.ts"
+    "dev": "bun run --watch index.ts",
+    "test": "bun test",
+    "typeorm": "bun ./node_modules/typeorm/cli.js -d ./src/config/data-source.ts",
+    "migration:generate": "bun run typeorm migration:generate",
+    "migration:run": "bun run typeorm migration:run",
+    "migration:revert": "bun run typeorm migration:revert"
   },
   "devDependencies": {
     "@types/bun": "latest",
     "@types/express": "^5.0.3",
-    "@types/node": "^24.3.3"
+    "@types/node": "^24.3.3",
+    "ts-node": "^10.9.2"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"

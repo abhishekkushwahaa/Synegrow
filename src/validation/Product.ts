@@ -1,4 +1,4 @@
-import { ProductCategory } from "../entities/Product";
+import { ProductCategory } from "../entities/Entities";
 import type { ValidationError } from "./Supplier";
 
 export class ProductValidator {

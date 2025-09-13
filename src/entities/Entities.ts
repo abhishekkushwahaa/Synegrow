@@ -3,11 +3,12 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  OneToMany,
   ManyToOne,
   JoinColumn,
 } from "typeorm";
-import { Supplier } from "./Supplier";
 
+// Define Enum here as well
 export enum ProductCategory {
   ELECTRONICS = "ELECTRONICS",
   FASHION = "FASHION",
@@ -15,6 +16,36 @@ export enum ProductCategory {
   OTHER = "OTHER",
 }
 
+//++++++++++++++++++++++++++++++++++++
+// SUPPLIER ENTITY
+//++++++++++++++++++++++++++++++++++++
+@Entity({ name: "suppliers" })
+export class Supplier {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({ length: 100 })
+  name: string;
+
+  @Column({ unique: true })
+  email: string;
+
+  @Column({ length: 10 })
+  phone: string;
+
+  @Column()
+  country: string;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @OneToMany(() => Product, (product) => product.supplier)
+  products: Product[];
+}
+
+//++++++++++++++++++++++++++++++++++++
+// PRODUCT ENTITY
+//++++++++++++++++++++++++++++++++++++
 @Entity({ name: "products" })
 export class Product {
   @PrimaryGeneratedColumn()
@@ -47,7 +78,9 @@ export class Product {
   @CreateDateColumn()
   created_at: Date;
 
-  @ManyToOne(() => Supplier, (supplier) => supplier.products)
+  @ManyToOne(() => Supplier, (supplier) => supplier.products, {
+    onDelete: "CASCADE",
+  })
   @JoinColumn({ name: "supplier_id" })
   supplier: Supplier;
 }
