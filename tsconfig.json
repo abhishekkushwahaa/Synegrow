@@ -5,8 +5,16 @@
     "target": "ESNext",
     "module": "ESNext",
     "moduleDetection": "force",
+    "strictPropertyInitialization": false,
     "jsx": "react-jsx",
     "allowJs": true,
+    "types": [
+      "bun-types" // Use Bun's built-in types
+    ],
+
+    // --- Required for TypeORM ---
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
 
     // Bundler mode
     "moduleResolution": "bundler",
