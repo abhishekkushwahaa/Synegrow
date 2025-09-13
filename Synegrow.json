@@ -1,0 +1,223 @@
+{
+  "info": {
+    "_postman_id": "a1b2c3d4-e5f6-7890-1234-abcdef123456",
+    "name": "Synegrow Assignment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Suppliers",
+      "item": [
+        {
+          "name": "Create New Supplier",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Synetronics Global\",\n    \"email\": \"contact@syne.global\",\n    \"phone\": \"9876543210\",\n    \"country\": \"India\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/suppliers",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["suppliers"]
+            },
+            "description": "Adds a new supplier to the database."
+          },
+          "response": []
+        },
+        {
+          "name": "List All Suppliers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/suppliers",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["suppliers"]
+            },
+            "description": "Retrieves a list of all suppliers."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Supplier by ID (with Analytics)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/suppliers/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["suppliers", "1"]
+            },
+            "description": "Retrieves a specific supplier's details, including their products and inventory analytics."
+          },
+          "response": []
+        },
+        {
+          "name": "Create Supplier (Validation Error 400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"A\",\n    \"email\": \"bademail\",\n    \"phone\": \"12345\",\n    \"country\": \"\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/suppliers",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["suppliers"]
+            },
+            "description": "Attempts to create a supplier with invalid data to test error handling."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Supplier by ID (Not Found 404)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/suppliers/999",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["suppliers", "999"]
+            },
+            "description": "Attempts to fetch a supplier that does not exist."
+          },
+          "response": []
+        }
+      ],
+      "description": "Endpoints related to managing suppliers."
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Create New Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Quantum Laptop Pro\",\n    \"price\": 120000.00,\n    \"stock_quantity\": 50,\n    \"category\": \"ELECTRONICS\",\n    \"supplier_id\": 1\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/products",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["products"]
+            },
+            "description": "Adds a new product linked to an existing supplier."
+          },
+          "response": []
+        },
+        {
+          "name": "List All Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/products",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["products"]
+            },
+            "description": "Retrieves a list of all products, with their supplier details included."
+          },
+          "response": []
+        },
+        {
+          "name": "List Products (Filter by Category)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/products?category=ELECTRONICS",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["products"],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "ELECTRONICS"
+                }
+              ]
+            },
+            "description": "Filters the list of products by a specific category."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Product by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/products/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["products", "1"]
+            },
+            "description": "Retrieves details for a specific product."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Product Stock",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"stock_quantity\": 45\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/products/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["products", "1"]
+            },
+            "description": "Updates the stock quantity of a specific product."
+          },
+          "response": []
+        }
+      ],
+      "description": "Endpoints related to managing products."
+    }
+  ]
+}
