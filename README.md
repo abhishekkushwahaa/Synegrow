@@ -87,6 +87,7 @@ Now you can expand the collection and run any of the saved requests to test the 
 ### **2. Manual Testing**
 
 - **POST /suppliers**
+
   - Method: `POST`
   - URL: `http://localhost:3000/suppliers`
   - Headers:
@@ -102,23 +103,20 @@ Now you can expand the collection and run any of the saved requests to test the 
     ```
   - Expected Response: `201 Created` with the created supplier object.
 
----
-
 - **GET /suppliers**
+
   - Method: `GET`
   - URL: `http://localhost:3000/suppliers`
   - Expected Response: `200 OK` with an array of supplier objects.
 
----
-
 - **GET /suppliers/:id**
+
   - Method: `GET`
   - URL: `http://localhost:3000/suppliers/1`
   - Expected Response: `200 OK` with the supplier object including products and analytics.
 
----
-
 - **POST /products**
+
   - Method: `POST`
   - URL: `http://localhost:3000/products`
   - Headers:
@@ -135,28 +133,23 @@ Now you can expand the collection and run any of the saved requests to test the 
     ```
   - Expected Response: `201 Created` with the created product object.
 
----
-
 - **GET /products**
+
   - Method: `GET`
   - URL: `http://localhost:3000/products`
   - Expected Response: `200 OK` with an array of product objects including supplier details.
 
----
-
 - **GET /products?category=ELECTRONICS**
+
   - Method: `GET`
   - URL: `http://localhost:3000/products?category=ELECTRONICS`
   - Expected Response: `200 OK` with an array of products filtered by category.
 
----
-
 - **GET /products/:id**
+
   - Method: `GET`
   - URL: `http://localhost:3000/products/1`
   - Expected Response: `200 OK` with the requested product object.
-
----
 
 - **PATCH /products/:id**
   - Method: `PATCH`
@@ -171,11 +164,10 @@ Now you can expand the collection and run any of the saved requests to test the 
     ```
   - Expected Response: `200 OK` with the updated product object.
 
----
-
-#### ⚠️ **Error Handling Examples**
+#### **Error Handling Examples**
 
 - **Validation Error (400 Bad Request)**
+
   - Method: `POST`
   - URL: `http://localhost:3000/suppliers`
   - Headers:
@@ -189,8 +181,6 @@ Now you can expand the collection and run any of the saved requests to test the 
     }
     ```
   - Expected Response: `400 Bad Request` with a detailed `errors` array.
-
----
 
 - **Not Found Error (404 Not Found)**
 
